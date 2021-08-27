@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Геоотзыв</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div id="map"></div>
+      <div id="window_balloon">
+        <div id="window__header">
+          <div id="address"></div>
+          <button id="button__close">+</button>
+        </div>
+        <div id="comments">нет комментариев</div>
+        <div id="form__wrap">
+          <h3 id="form__header">Отзыв:</h3>
+          <input
+            data-role="review-name"
+            type="text"
+            id="input-name"
+            class="input"
+            placeholder="Укажите ваше имя"
+          />
+          <input
+            data-role="review-place"
+            type="text"
+            id="input-place"
+            class="input"
+            placeholder="Укажите место"
+          />
+          <textarea
+            data-role="review-text"
+            name="review"
+            id="input-text"
+            class="input"
+            cols="30"
+            rows="5"
+            placeholder="Оставить отзыв"
+          ></textarea>
+          <button id="button__add"><b>Добавить</b></button>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./src/main.js"></script>
+  </body>
+</html>

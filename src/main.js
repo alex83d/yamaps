@@ -21,10 +21,10 @@ let toObject = (p) => {
   }
 }
 
-
-
-
-
+let addToLocalStorage = (obj) => {
+  localStorage.clear();
+  localStorage.setItem('obj', obj);
+}
 
 
 closeButton.addEventListener('click', () => {
@@ -220,6 +220,7 @@ function initMap() {
   });
 
   // изменение placemarks
-  placemarks.push = function() { Array.prototype.push.apply(this, arguments); console.log('event'); toObject(placemarks)};
+  placemarks.push = function() { Array.prototype.push.apply(this, arguments);
+     console.log('event'); toObject(placemarks); addToLocalStorage(data)};
 }
 

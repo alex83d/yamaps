@@ -1,9 +1,5 @@
 let myMap;
-/*const data = {
-  place: "",
-  commentContent: "",
-  coords: ""
-};*/
+const data = {};
 
 const myBalloon = document.querySelector('#window_balloon');
 const closeButton = document.querySelector('#button__close');
@@ -14,6 +10,19 @@ const inputPlace = document.querySelector('#input-place');
 const comments = document.querySelector('#comments');
 const inputText = document.querySelector('#input-text');
 const placemarks = []; // массив с метками;
+
+
+let toObject = (p) => {
+  for(let i = 0; i< p.length; i++) {
+    if (p[i] !== undefined) {
+    data[i] = p[i];
+    }
+    //({_coordinates: data.coord} = p[i]["geometry"]);
+  }
+}
+
+
+
 
 
 
@@ -126,12 +135,12 @@ function initMap() {
     getAddress(coords);
   });
 
-  // Создание метки.
+  // Создание метки
   function createPlacemark(coords) {
     return new ymaps.Placemark(coords);
   }
 
-  //  обратное геокодирование.
+  //  обратное геокодирование
   function getAddress(coords) {
     ymaps.geocode(coords).then(function (res) {
       const firstGeoObject = res.geoObjects.get(0);
@@ -172,7 +181,7 @@ function initMap() {
         date.getMinutes() +
         ')';
 
-      // Создаём метку.
+      // Создаём метку
       const newMark = new ymaps.Placemark(
         coordinates, {
           balloonContentHeader: inputPlace.value,
@@ -209,5 +218,8 @@ function initMap() {
       swal('внимание', 'заполните все поля', 'warning');
     }
   });
+
+  // изменение placemarks
+  placemarks.push = function() { Array.prototype.push.apply(this, arguments); console.log('event'); toObject(placemarks)};
 }
 

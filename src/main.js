@@ -113,14 +113,14 @@ function initMap() {
   clusterer.add(placemarks);
   myMap.geoObjects.add(clusterer);
 
-  // Слушаем клик на карте.
+  // событие клик на карте
   myMap.events.add('click', (e) => {
     let coords;
     coords = e.get('coords');
     coordinates = coords;
     comments.innerHTML = 'нет комментариев';
 
-    // Выводим окно с отзывами и формой.
+    // открываем окно с отзывами и формой.
     openBalloon();
     myMark = createPlacemark(coords);
     getAddress(coords);

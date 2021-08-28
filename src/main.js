@@ -1,5 +1,5 @@
 let myMap;
-const data = {};
+const data = [];
 
 const myBalloon = document.querySelector('#window_balloon');
 const closeButton = document.querySelector('#button__close');
@@ -12,19 +12,36 @@ const inputText = document.querySelector('#input-text');
 const placemarks = []; // массив с метками;
 
 
-let toObject = (p) => {
-  for(let i = 0; i< p.length; i++) {
+/*let toObject = (p) => {
+  for (let i = 0; i < p.length; i++) {
     if (p[i] !== undefined) {
-    data[i] = p[i];
+      ({place: data[i]} = p[i].place);
+      ({commentContent: data[i]} = p[i].commentContent);
+      ({_coordinates: data[i]} = p[i]["geometry"]);
+      //[0].geometry._coordinates[0]
+      console.log(data);
     }
-    //({_coordinates: data.coord} = p[i]["geometry"]);
+
+    
   }
+}*/
+
+let addToLocalStorage = (array) => {
+  if (typeof array !== undefined) {
+    localStorage.clear();
+    localStorage.setItem(array, JSON.stringify(array));
+    console.log(localStorage);
+  }
+
 }
 
-let addToLocalStorage = (obj) => {
-  localStorage.clear();
-  localStorage.setItem('obj', obj);
-}
+document.addEventListener("DOMContentLoaded", function (event) {
+  if (localStorage.length != 0) {
+      let key = localStorage.getItem;
+      //data[i] = (localStorage.getItem(key));
+  }
+
+});
 
 
 closeButton.addEventListener('click', () => {
@@ -198,6 +215,11 @@ function initMap() {
       clusterer.add(newMark);
       placemarks.push(newMark);
 
+
+      
+      
+      
+
       // Обновление содержимого балуна
       if (comments.innerHTML === 'нет комментариев') comments.innerHTML = '';
       newMark.commentContent = `<div><span><b>${inputName.value}</b></span>
@@ -206,6 +228,17 @@ function initMap() {
         <p>${inputText.value}</p></div><br>`;
       comments.innerHTML = newMark.commentContent;
       newMark.place = address.innerText;
+      
+      //сохранить метки в массив data
+      if(newMark!== undefined) {
+        data.push([
+        coords = coordinates,
+        place = newMark.place,
+        commentContent = newMark.commentContent,
+        ]);
+
+      }
+
 
       clearInputs();
 
@@ -220,7 +253,10 @@ function initMap() {
   });
 
   // изменение placemarks
-  placemarks.push = function() { Array.prototype.push.apply(this, arguments);
-     console.log('event'); toObject(placemarks); addToLocalStorage(data)};
+  placemarks.push = function () {
+    Array.prototype.push.apply(this, arguments);
+    console.log('event');
+    //toObject(placemarks);
+    addToLocalStorage(data);
+  };
 }
-
